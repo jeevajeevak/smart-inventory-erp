@@ -19,12 +19,14 @@ const userSchema = new mongoose.Schema(
       required: true,
       unique: true,
       lowercase: true,
+      trim: true,
     },
 
     password: {
       type: String,
       required: true,
       minlength: 6,
+      select: false, // Hide password by default
     },
 
     phone: {
@@ -38,14 +40,14 @@ const userSchema = new mongoose.Schema(
       default: "sales",
     },
 
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-
     profileImage: {
       type: String,
       default: "",
+    },
+
+    isActive: {
+      type: Boolean,
+      default: true,
     },
   },
   {

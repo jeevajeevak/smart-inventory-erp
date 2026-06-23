@@ -6,6 +6,11 @@ import compression from "compression";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 
+import authRoutes from './routes/auth.routes.js';
+
+//import errorHandler from "./middlewares/error.middleware.js";
+import errorHandler from "./middleware/error.middleware.js";
+
 dotenv.config();
 
 const app = express();
@@ -34,5 +39,9 @@ app.get("/", (req, res) => {
     message: "Smart Inventory ERP API Running",
   });
 });
+
+app.use("/api/auth", authRoutes);
+
+app.use(errorHandler);
 
 export default app;
